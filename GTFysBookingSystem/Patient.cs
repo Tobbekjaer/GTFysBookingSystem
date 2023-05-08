@@ -15,20 +15,26 @@ namespace GTFysBookingSystem
         public string City { get; set; }
         public int ZipCode { get; set; }
         
-        public Patient(string firstName, string lastName, string phone, string email, string username, string password,
-            string cpr, bool insurance, string address, string city, int zipCode) 
+        public Patient(LogIn login, string cpr, bool insurance, string address, string city, int zipCode) 
         {
-            this.FirstName = firstName;
-            this.LastName = lastName;
-            this.Phone = phone;
-            this.Email = email;
-            this.Username = username;
-            this.Password = password;
+            this.FirstName = login.FirstName;
+            this.LastName = login.LastName;
+            this.Phone = login.Phone;
+            this.Email = login.Email;
+            this.Username = login.Username;
+            this.Password = login.Password;
             this.Cpr = cpr;
             this.Insurance = insurance;
             this.Address = address;
             this.City = city;
             this.ZipCode = zipCode;
+        }
+
+        public override string ToString()
+        {
+            return $"First Name: {FirstName}, Last Name: {LastName}, Phone number: {Phone}, Email: {Email}" +
+                $" Username: {Username}, Password: {Password}, CPR: {Cpr}, Insurance: {Insurance}, Address: {Address}" +
+                $" City: {City}, Zip Code: {ZipCode}";
         }
 
 
