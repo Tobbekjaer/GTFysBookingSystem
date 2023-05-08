@@ -18,7 +18,8 @@ namespace GTFysBookingSystem
         public static int FirstConsultationLength = 60;
         public static int TrainingInstructionLength = 45;
 
-
+        // Constructor til at oprette en konsultation
+        // Tager alle et patient-objekt, physio-objekt, behandlingstype, dato og tid
         public Consultation(Patient patient, Physio physio, TreatmentType treatmentType, DateOnly date, TimeOnly time) 
         { 
             this.Patient = patient;
@@ -28,6 +29,7 @@ namespace GTFysBookingSystem
             this.Time = time;
         }
 
+        // ToString metode til at repræsentere en konsultation hvis vi fx skal skrive den til en fil
         public override string ToString()
         {
             return $"Patient: {Patient.FirstName} {Patient.LastName}, Physio: {Physio.FirstName} {Physio.LastName}" +
