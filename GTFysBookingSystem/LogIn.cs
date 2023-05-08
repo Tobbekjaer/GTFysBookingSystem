@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace GTFysBookingSystem
 {
+    // Login klasse som indeholder alle standard login oplysninger
+    // Base class for patient og physio
     public class LogIn
     {
+        
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Phone { get; set; }

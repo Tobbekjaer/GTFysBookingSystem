@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 
 namespace GTFysBookingSystem
 {
+    // Nedarver fra login klassen
+    // Physio er derived class til login
     public class Physio : LogIn
     {
         // Constructor til at oprette en physio

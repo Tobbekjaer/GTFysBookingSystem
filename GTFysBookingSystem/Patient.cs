@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace GTFysBookingSystem
 {
+    // Nedarver fra login klassen
+    // Patient er derived class til login
     public class Patient : LogIn
     {
         // Public properties
