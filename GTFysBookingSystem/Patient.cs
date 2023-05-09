@@ -10,12 +10,84 @@ namespace GTFysBookingSystem
     // Patient er derived class til login
     public class Patient : LogIn
     {
+        // Private fields
+        private string _cpr;
+        private bool _insurance;
+        private string _address;
+        private string _city;
+        private int _zipCode;
+
         // Public properties
-        public string Cpr { get; set; }
-        public bool Insurance { get; set; }
-        public string Address { get; set; }
-        public string City { get; set; }
-        public int ZipCode { get; set; }
+        public string Cpr
+        {
+            get { return _cpr; }
+            set {
+                // Tjekker at alle karakterer i _cpr er tal
+                try {
+                    if (_cpr.All(char.IsDigit)) {
+                        _cpr = value;
+                    }
+                }
+                // Kaster en exeption, hvis input ikke er indtastet korrekt
+                catch (Exception ex) {
+                    throw new ArgumentException("Cpr-nummer kan kun indeholde tal.");
+                }
+               
+            }
+        }
+        public bool Insurance
+        {
+            get { return _insurance; }
+            set { _insurance = value; }
+        }
+        public string Address
+        {
+            get { return _address; }
+            set {
+                try {
+                    // Tjekker at karaktererne i _address er enten bogstaver eller tal
+                    if (_address.All(char.IsLetterOrDigit)) {
+                        _address = value;
+                    }
+                }
+                catch (Exception ex) {
+                    throw new ArgumentException("Adresse skal indeholde bogstaver og tal.");
+                }
+            }
+        }
+        public string City
+        {
+            get { return _city; }
+            set {
+                // Tjekker at alle karakterer i _city er bogstaver
+                try {
+                    if (_city.All(char.IsLetter)) {
+                        _city = value;
+                    }
+                }
+                // Kaster en exeption, hvis input ikke er indtastet korrekt
+                catch (Exception ex) {
+                    throw new ArgumentException("By kan kun indeholde bogstaver.");
+                }
+                
+            }
+        }
+        public int ZipCode
+        {
+            get { return _zipCode; }
+            set {
+                // Tjekker at alle karakterer i _phone er tal
+                try {
+                        _zipCode = value;
+                }
+                // Kaster en exeption, hvis input ikke er indtastet korrekt
+                catch (Exception ex) {
+                    throw new ArgumentException("Postnummer kan kun indeholde tal.");
+                }
+                
+            }
+        }
+
         
         // Constructor til at oprette en patient
         // Tager alle login informationer plus resten af parametrene
