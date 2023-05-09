@@ -31,7 +31,8 @@ namespace GTFysBookingSystem
                         _firstName = value;
                     }
                     // Kaster en exeption, hvis input ikke er indtastet korrekt
-                } catch(Exception ex) {
+                }
+                catch (Exception ex) {
                     throw new ArgumentException("Fornavnet kan kun indeholde bogstaver.");
                 }
             }
@@ -92,7 +93,8 @@ namespace GTFysBookingSystem
         public string Password
         {
             get { return _password; }
-            set {
+            set
+            {
                 try {
                     // Tjekker om _password ikke kun er bogstaver eller tal, at input enten er bogstaver eller tal
                     // og at længden på _password er minimum 8 karakterer
@@ -104,9 +106,10 @@ namespace GTFysBookingSystem
                 catch (Exception ex) {
                     throw new ArgumentException("Adgangskoden skal indeholde bogstaver, tal og bestå af minimum 8 karakterer.");
                 }
-                
+
             }
         }
 
+        
     }
 }

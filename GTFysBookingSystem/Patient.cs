@@ -88,9 +88,23 @@ namespace GTFysBookingSystem
             }
         }
 
-        
+
         // Constructor til at oprette en patient
         // Tager alle login informationer plus resten af parametrene
+        public Patient(string firstName, string lastName, string phone, string email, string username, string password, string cpr, bool insurance, string address, string city, int zipCode)
+        {
+            this.FirstName = firstName;
+            this.LastName = lastName;
+            this.Phone = phone;
+            this.Email = email;
+            this.Username = username;
+            this.Password = password;
+            this.Cpr = cpr;
+            this.Insurance = insurance;
+            this.Address = address;
+            this.City = city;
+            this.ZipCode = zipCode;
+        }
         public Patient(LogIn login, string cpr, bool insurance, string address, string city, int zipCode) 
         {
             this.FirstName = login.FirstName;
@@ -105,6 +119,8 @@ namespace GTFysBookingSystem
             this.City = city;
             this.ZipCode = zipCode;
         }
+        
+
 
         // ToString metode til at repræsentere et patient-objekt hvis vi fx skal skrive den til en fil
         public override string ToString()
