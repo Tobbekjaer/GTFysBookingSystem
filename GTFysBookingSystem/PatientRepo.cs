@@ -21,7 +21,9 @@ namespace GTFysBookingSystem
 		// AddPatient() metoden tilføjer en ny patient til listen 
 		public void AddPatient(Patient patient)
 		{
-			_patients.Add(patient);
+			if (patient != null) {
+				_patients.Add(patient);
+			}
 		}
 
         // DeletePatient() metoden sletter en patient fra listen, hvis listen indeholder en person med et matchende cpr

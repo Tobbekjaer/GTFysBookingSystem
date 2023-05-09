@@ -36,6 +36,23 @@ namespace GTFysBookingSystem
                 $" Treatment Type: {TreatmentType}, Date: {Date}, Time: {Time}";
         }
 
+        public TreatmentType GetTreatmentType(TreatmentType treatmentType)
+        {
+            // Instantier et TreatmentType objekt
+            TreatmentType type = new TreatmentType();
+
+            // Hvis treatmentType parameter er førstegangs konsultation, returnér førstegangs konsultation
+            if(treatmentType is TreatmentType.FirstConsultation) {
+                type = treatmentType;
+            }
+            // Hvis treatmentType parameter er trænings instruktion konsultation, returnér trænings instruktion konsultation
+            if (treatmentType is TreatmentType.TrainingInstruction) {
+                type = treatmentType;
+            }
+            return type;
+        }
+
+
 
     }
 }

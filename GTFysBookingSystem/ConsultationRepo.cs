@@ -36,7 +36,22 @@ namespace GTFysBookingSystem
             }
             return returnConsultations;
         }
-        
 
-	}
+        // Method overload til at en enkelt patients konsultationer
+        public List<string> GetAll(Patient patient)
+        {
+            List<string> patitentConsultations = new List<string>();
+            foreach (Consultation consultation in _consultations) {
+                // Hvis patient objektet har et tilknyttet konsultations objekt tilføjer vi konsultationen  
+                // til listen over patientens konsultationer
+                if (patient == consultation.Patient) {
+                    patitentConsultations.Add(consultation.ToString());
+                }
+            }
+            return patitentConsultations;
+        }
+
+
+
+    }
 }
