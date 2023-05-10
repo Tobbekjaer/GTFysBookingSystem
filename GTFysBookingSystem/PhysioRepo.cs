@@ -39,7 +39,7 @@ namespace GTFysBookingSystem
         {
             Physio returnPhysio = null;
             foreach (Physio physio in _physios) {
-                if(physio.FirstName.Equals(name)) {
+                if(physio.FirstName == name) {
                     returnPhysio = physio;
                 }
             }

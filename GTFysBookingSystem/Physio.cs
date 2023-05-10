@@ -24,6 +24,16 @@ namespace GTFysBookingSystem
             this.Username = login.Username;
             this.Password = login.Password;
         }
+        // Constructor overloading
+        public Physio(string firstName, string lastName, string phone, string email, string username, string password)
+        {
+            this.FirstName = firstName;
+            this.LastName = lastName;
+            this.Phone = phone;
+            this.Email = email;
+            this.Username = username;
+            this.Password = password;
+        }
 
         // ToString metode til at repræsentere et physio-objekt hvis vi fx skal skrive den til en fil
         public override string ToString()

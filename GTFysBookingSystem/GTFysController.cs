@@ -61,7 +61,11 @@ namespace GTFysBookingSystem
             //    Console.WriteLine("Failed to send email: " + ex.Message);
             //}
 
-           
+        }
+
+        public void AddPhysio(Physio physio)
+        {
+            physioRepo.AddPhysio(physio);
         }
 
         // GetAllPatients() returnerer en ToString() repræsentation af hver patient i patientRepo

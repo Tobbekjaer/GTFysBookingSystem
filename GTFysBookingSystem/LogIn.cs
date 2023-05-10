@@ -26,16 +26,16 @@ namespace GTFysBookingSystem
             set 
             {
                 _firstName = value;
-                // Tjekker at alle karakterer i _firstName er bogstaver
-                try {
-                    if (_firstName.All(char.IsLetter)) {
-                        _firstName = value;
-                    }
-                    // Kaster en exeption, hvis input ikke er indtastet korrekt
-                }
-                catch (Exception ex) {
-                    throw new ArgumentException("Fornavnet kan kun indeholde bogstaver.");
-                }
+                //// Tjekker at alle karakterer i _firstName er bogstaver
+                //try {
+                //    if (_firstName.All(char.IsLetter)) {
+                //        _firstName = value;
+                //    }
+                //    // Kaster en exeption, hvis input ikke er indtastet korrekt
+                //}
+                //catch (Exception ex) {
+                //    throw new ArgumentException("Fornavnet kan kun indeholde bogstaver.");
+                //}
             }
         }
         public string LastName
@@ -43,16 +43,16 @@ namespace GTFysBookingSystem
             get { return _lastName; }
             set {
                 _lastName = value;
-                // Tjekker at alle karakterer i _lastName er bogstaver
-                try {
-                    if (_lastName.All(char.IsLetter)) {
-                        _lastName = value;
-                    }
-                }
-                // Kaster en exeption, hvis input ikke er indtastet korrekt
-                catch (Exception ex) {
-                    throw new ArgumentException("Efternavnet kan kun indeholde bogstaver.");
-                }
+                //// Tjekker at alle karakterer i _lastName er bogstaver
+                //try {
+                //    if (_lastName.All(char.IsLetter)) {
+                //        _lastName = value;
+                //    }
+                //}
+                //// Kaster en exeption, hvis input ikke er indtastet korrekt
+                //catch (Exception ex) {
+                //    throw new ArgumentException("Efternavnet kan kun indeholde bogstaver.");
+                //}
             }
         }
         public string Phone
@@ -61,15 +61,15 @@ namespace GTFysBookingSystem
             set {
                 _phone = value;
                 // Tjekker at alle karakterer i _phone er tal
-                try {
-                    if (_phone.All(char.IsDigit)) {
-                        _phone = value;
-                    }
-                }
-                // Kaster en exeption, hvis input ikke er indtastet korrekt
-                catch (Exception ex) {
-                    throw new ArgumentException("Telefonnummer kan kun indeholde tal.");
-                }
+                //try {
+                //    if (_phone.All(char.IsDigit)) {
+                //        _phone = value;
+                //    }
+                //}
+                //// Kaster en exeption, hvis input ikke er indtastet korrekt
+                //catch (Exception ex) {
+                //    throw new ArgumentException("Telefonnummer kan kun indeholde tal.");
+                //}
 
             }
         }

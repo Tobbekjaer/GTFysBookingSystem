@@ -109,6 +109,7 @@ namespace GTFysBookingSystem
             this.City = city;
             this.ZipCode = zipCode;
         }
+        // Constructor overloading
         public Patient(LogIn login, string cpr, bool insurance, string address, string city, int zipCode) 
         {
             this.FirstName = login.FirstName;

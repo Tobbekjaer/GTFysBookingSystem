@@ -55,7 +55,7 @@ namespace GTFysBookingSystem
 		}
 
 
-		// GetAll() opretter en ny liste og kalder hvert patient-objekts ToString()-metode og
+		// GetAll() opretter en ny liste og kalder hvert patient-objekts ToString()-metode,
 		// tilføjer det til listen og returnerer listen over alle patienter
 		public List<string> GetAll()
 		{
@@ -64,12 +64,12 @@ namespace GTFysBookingSystem
 			using (StreamReader reader = new StreamReader("PatientRepository.txt")) {
 
 				string ln;
+
 				while((ln = reader.ReadLine()) != null) {
 
                     patients.Add(ln);
 					
-                }
-				
+                }	
 			}
 			return patients;
 		}
