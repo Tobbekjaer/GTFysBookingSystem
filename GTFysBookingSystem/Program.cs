@@ -25,7 +25,6 @@
             //--- TEST AF GET ALL PATIENTS ---\\
             List<string> patients = controller.GetAllPatients();
             foreach (string patient in patients) {
-
                 Console.WriteLine(patient);
             }
 

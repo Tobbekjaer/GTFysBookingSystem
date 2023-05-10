@@ -23,7 +23,13 @@ namespace GTFysBookingSystem
 		{
 			if (patient != null) {
 				_patients.Add(patient);
-			}
+
+                // Gem den nye patient i en tekstfil
+                using (StreamWriter writer = new StreamWriter("PatientRepository.txt", append:true)) {
+                    writer.WriteLine(patient.ToString());
+                }
+            }
+			
 		}
 
         // DeletePatient() metoden sletter en patient fra listen, hvis listen indeholder en person med et matchende cpr
@@ -55,10 +61,16 @@ namespace GTFysBookingSystem
 		{
             List <string> patients = new List <string>();
 
-            foreach (Patient patient in _patients) {
-				patients.Add(patient.ToString());
-			}
+			using (StreamReader reader = new StreamReader("PatientRepository.txt")) {
 
+				string ln;
+				while((ln = reader.ReadLine()) != null) {
+
+                    patients.Add(ln);
+					
+                }
+				
+			}
 			return patients;
 		}
 
