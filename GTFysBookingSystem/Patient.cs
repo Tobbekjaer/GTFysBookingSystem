@@ -22,6 +22,7 @@ namespace GTFysBookingSystem
         {
             get { return _cpr; }
             set {
+                _cpr = value;
                 // Tjekker at alle karakterer i _cpr er tal
                 try {
                     if (_cpr.All(char.IsDigit)) {
@@ -44,6 +45,7 @@ namespace GTFysBookingSystem
         {
             get { return _address; }
             set {
+                _address = value;
                 try {
                     // Tjekker at karaktererne i _address er enten bogstaver eller tal
                     if (_address.All(char.IsLetterOrDigit)) {
@@ -59,6 +61,8 @@ namespace GTFysBookingSystem
         {
             get { return _city; }
             set {
+
+                _city = value;
                 // Tjekker at alle karakterer i _city er bogstaver
                 try {
                     if (_city.All(char.IsLetter)) {
@@ -126,9 +130,11 @@ namespace GTFysBookingSystem
         public override string ToString()
         {
             return $"First Name: {FirstName}, Last Name: {LastName}, Phone number: {Phone}, Email: {Email}" +
-                $" Username: {Username}, Password: {Password}, CPR: {Cpr}, Insurance: {Insurance}, Address: {Address}" +
+                $" Username: {Username}, Password: {Password}, CPR: {Cpr}, Insurance: {Insurance}, Address: {Address}," +
                 $" City: {City}, Zip Code: {ZipCode}";
         }
+
+
 
 
 

@@ -24,6 +24,7 @@ namespace GTFysBookingSystem
             // Kalder AddPatient metoden i PatientRepo
             patientRepo.AddPatient(patient);
 
+            
             // Send bekræftelses email til patienten
 
             // Hvis emailen bliver bekræftet bliver patienten tilføjet til repositoriet
@@ -61,6 +62,12 @@ namespace GTFysBookingSystem
             //}
 
            
+        }
+
+        // GetAllPatients() returnerer en ToString() repræsentation af hver patient i patientRepo
+        public List<string> GetAllPatients()
+        {
+            return patientRepo.GetAll();
         }
 
         // DisplayConsultations metoden tager et patient objekt og returnerer en list over tilknyttede konsultationer
