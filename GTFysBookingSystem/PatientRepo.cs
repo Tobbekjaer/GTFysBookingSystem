@@ -36,7 +36,7 @@ namespace GTFysBookingSystem
         public void DeletePatient(string cpr)
 		{
 			foreach (Patient patient in _patients) {
-				if(patient.Cpr.Equals(cpr)) {
+				if(patient.Cpr == cpr) {
                     _patients.Remove(patient);
                 }
 			}
@@ -47,7 +47,7 @@ namespace GTFysBookingSystem
 		{
 			Patient returnPatient = null;
 			foreach (Patient patient in _patients) {
-				if (patient.Cpr.Equals(cpr)) {
+				if (cpr == patient.Cpr) {
 					returnPatient = patient;
 					}
 				}

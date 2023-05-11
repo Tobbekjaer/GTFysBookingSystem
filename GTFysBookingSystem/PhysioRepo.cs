@@ -21,7 +21,10 @@ namespace GTFysBookingSystem
         // AddPhysio() metoden tilføjer en ny fysioterapuet til listen 
         public void AddPhysio(Physio physio)
         {
-            _physios.Add(physio);
+            if (physio != null) {
+                _physios.Add(physio);
+            }
+            
         }
 
         // DeletePatient() metoden sletter en fysioterapeut fra listen, hvis listen indeholder en person med et matchende fornavn

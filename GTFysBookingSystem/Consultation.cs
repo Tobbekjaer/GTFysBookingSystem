@@ -20,11 +20,11 @@ namespace GTFysBookingSystem
 
         // Constructor til at oprette en konsultation
         // Tager alle et patient-objekt, physio-objekt, behandlingstype, dato og tid
-        public Consultation(Patient patient, Physio physio, TreatmentType treatmentType, DateOnly date, TimeOnly time) 
+        public Consultation(Patient patient, TreatmentType treatmentType, Physio physio, DateOnly date, TimeOnly time) 
         { 
             this.Patient = patient;
-            this.Physio = physio;
             this.TreatmentType = treatmentType;
+            this.Physio = physio;
             this.Date = date;
             this.Time = time;
         }

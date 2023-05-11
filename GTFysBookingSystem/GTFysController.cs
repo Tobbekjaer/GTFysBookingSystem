@@ -11,16 +11,22 @@ namespace GTFysBookingSystem
 {
     public class GTFysController
     {
+
         // Initialisering af PatientRepo 
         PatientRepo patientRepo = new PatientRepo();
-        // Initialisering af ConsultationRepo
-        ConsultationRepo consultationRepo = new ConsultationRepo();
+
         // Initialisering af PhysioRepo
         PhysioRepo physioRepo = new PhysioRepo();
+
+        // Initialisering af ConsultationRepo
+        ConsultationRepo consultationRepo = new ConsultationRepo();
 
         // NewPatient metode
         public void NewPatient(Patient patient)
         {
+            // Initialisering af PatientRepo 
+            PatientRepo patientRepo = new PatientRepo();
+
             // Kalder AddPatient metoden i PatientRepo
             patientRepo.AddPatient(patient);
 
@@ -76,40 +82,16 @@ namespace GTFysBookingSystem
 
         // DisplayConsultations metoden tager et patient objekt og returnerer en list over tilknyttede konsultationer
         public List<string> DisplayConsultations(Patient patient) 
-        {
+        {          
             // Kalder ConsultationRepo's GetAll(Patient patient) metode, der tager et patient objekt 
             // og returnerer en string liste over patientens konsultationer
             return consultationRepo.GetAll(patient);
         }
 
-        public string BookConsultation(Patient patient, TreatmentType treatmentType, Physio physio, DateOnly date, TimeOnly time)
+        public void BookConsultation(Patient patient, TreatmentType treatmentType, Physio physio, DateOnly date, TimeOnly time)
         {
-
-            // Konsultations objekt til at holde alle objekter
-            Consultation newConsultation = null;
-
-            // Hent det eksiterende patient objekt fra PatientRepo og gemmer det i currentPatient
-            Patient currentPatient = patientRepo.GetPatient(patient.Cpr);
-
-            // Gemmer behandlingstypen i et TreatmentType objekt
-            TreatmentType type = new TreatmentType();
-            type = consultationRepo.GetTreatmentType(treatmentType);
-
-            // Hent det eksiterende physio objekt fra PhysioRepo og gemmer det i currentPhysio
-            Physio currentPhysio = physioRepo.GetPhysio(physio.FirstName);
-
-
-            if (currentPatient != null && currentPhysio != null) {
-                newConsultation.Patient = currentPatient;
-                newConsultation.TreatmentType = type;
-                newConsultation.Physio = currentPhysio;
-                newConsultation.Date = date;
-                newConsultation.Time = time;
-            }
-
-            consultationRepo.AddConsultation(newConsultation);
-
-            return newConsultation.ToString();
+         
+            consultationRepo.AddConsultation(patient, treatmentType, physio, date, time);
 
         }
 

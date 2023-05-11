@@ -33,6 +33,7 @@
             //--- TEST AF BOOK CONSULTATIONS ---\\
 
             // Opretter to fysioterapuet objekter
+
             Physio henrik = new Physio("Henrik", "Kjær", "59382059", "henrik@gtfys.dk", "henrikGTFys", "gettingUnreal");
             Physio thomas = new Physio("Thomas", "Larsen", "59382059", "thomas@gtfys.dk", "thomasGTFys", "gettingUnreal");
 
@@ -40,7 +41,7 @@
             controller.AddPhysio(henrik);
             controller.AddPhysio(thomas);
 
-            Console.WriteLine(controller.BookConsultation(sarah,TreatmentType.FirstConsultation, henrik, DateOnly.Parse("12-05-2023"), TimeOnly.Parse("9:00")));
+            controller.BookConsultation(sarah,TreatmentType.FirstConsultation, henrik, DateOnly.Parse("12-05-2023"), TimeOnly.Parse("9:00"));
 
             //--- TEST AF DISPLAY CONSULTATIONS ---\\
             // controller.DisplayConsultations(tobias);
