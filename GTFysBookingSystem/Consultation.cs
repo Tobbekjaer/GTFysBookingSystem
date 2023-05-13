@@ -32,7 +32,7 @@ namespace GTFysBookingSystem
         // ToString metode til at repræsentere en konsultation hvis vi fx skal skrive den til en fil
         public override string ToString()
         {
-            return $"Patient: {Patient.FirstName} {Patient.LastName}, Physio: {Physio.FirstName} {Physio.LastName}" +
+            return $"Patient: {Patient.FirstName} {Patient.LastName}, Physio: {Physio.FirstName} {Physio.LastName}," +
                 $" Treatment Type: {TreatmentType}, Date: {Date}, Time: {Time}";
         }
 

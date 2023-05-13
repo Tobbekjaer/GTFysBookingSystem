@@ -23,53 +23,49 @@ namespace GTFysBookingSystem
         public string FirstName
         {
             get { return _firstName; }
-            set 
+            set
             {
-                _firstName = value;
-                //// Tjekker at alle karakterer i _firstName er bogstaver
-                //try {
-                //    if (_firstName.All(char.IsLetter)) {
-                //        _firstName = value;
-                //    }
-                //    // Kaster en exeption, hvis input ikke er indtastet korrekt
-                //}
-                //catch (Exception ex) {
-                //    throw new ArgumentException("Fornavnet kan kun indeholde bogstaver.");
-                //}
+                try {
+                    // Tjekker at karaktererne i _firstName er bogstaver
+                    if (IsStringLetters(value)) {
+                        _firstName = value;
+                    }
+                }
+                catch (Exception ex) {
+                    throw new ArgumentException("Fornavn kan kun indeholde bogstaver.");
+                }
+
             }
         }
         public string LastName
         {
             get { return _lastName; }
             set {
-                _lastName = value;
-                //// Tjekker at alle karakterer i _lastName er bogstaver
-                //try {
-                //    if (_lastName.All(char.IsLetter)) {
-                //        _lastName = value;
-                //    }
-                //}
-                //// Kaster en exeption, hvis input ikke er indtastet korrekt
-                //catch (Exception ex) {
-                //    throw new ArgumentException("Efternavnet kan kun indeholde bogstaver.");
-                //}
+                try {
+                    // Tjekker at karaktererne i _lastName er bogstaver
+                    if (IsStringLetters(value)) {
+                        _lastName = value;
+                    }
+                }
+                catch (Exception ex) {
+                    throw new ArgumentException("Efternavn kan kun indeholde bogstaver.");
+                }
+               
             }
         }
         public string Phone
         {
             get { return _phone; }
             set {
-                _phone = value;
-                // Tjekker at alle karakterer i _phone er tal
-                //try {
-                //    if (_phone.All(char.IsDigit)) {
-                //        _phone = value;
-                //    }
-                //}
-                //// Kaster en exeption, hvis input ikke er indtastet korrekt
-                //catch (Exception ex) {
-                //    throw new ArgumentException("Telefonnummer kan kun indeholde tal.");
-                //}
+                try {
+                    // Tjekker at alle karakterer i _phone er tal
+                    if (IsStringDigits(value)) {
+                        _phone = value;
+                    }
+                }
+                catch (Exception ex) {
+                    throw new ArgumentException("Telefonnummer skal indeholde bogstaver og tal.");
+                }
 
             }
         }
@@ -82,17 +78,15 @@ namespace GTFysBookingSystem
         {
             get { return _username; }
             set {
-                _username = value;
-                //try {
-                //    // Tjekker at karaktererne i _username er enten bogstaver eller tal
-                //    if (_username.All(char.IsLetterOrDigit)) {
-                //        _username = value;
-                //    }
-                //}
-                //catch (Exception ex) {
-                //    throw new ArgumentException("Brugernavn skal indeholde bogstaver og tal.");
-                //}
-
+                try {
+                    // Tjekker at karaktererne i Username er bogstaver og tal
+                    if (ContainsLettersAndDigits(value)) {
+                        _username = value;
+                    }
+                }
+                catch (Exception ex) {
+                    throw new ArgumentException("Brugernavn skal indeholde bogstaver og tal.");
+                }           
             }
         }
         public string Password
@@ -100,22 +94,50 @@ namespace GTFysBookingSystem
             get { return _password; }
             set
             {
-                _password = value;
-                //try {
-                //    // Tjekker om _password ikke kun er bogstaver eller tal, at input enten er bogstaver eller tal
-                //    // og at længden på _password er minimum 8 karakterer
-                //    if (!_password.All(char.IsLetter) && !_password.All(char.IsDigit) && _password.All(char.IsLetterOrDigit)
-                //        && _password.Length >= 8) {
-                //        _username = value;
-                //    }
-                //}
-                //catch (Exception ex) {
-                //    throw new ArgumentException("Adgangskoden skal indeholde bogstaver, tal og bestå af minimum 8 karakterer.");
-                //}
-
+                try {
+                    // Tjekker at karaktererne i Password er bogstaver og tal
+                    if (ContainsLettersAndDigits(value)) {
+                        _password = value;
+                    }
+                }
+                catch (Exception ex) {
+                    throw new ArgumentException("Adgangskode skal indeholde bogstaver og tal.");
+                }
             }
         }
 
-        
+        private bool IsStringDigits(string input)
+        {
+            foreach (char c in input) {
+                if (!char.IsDigit(c))
+                    return false;
+            }
+            return true;
+        }
+
+        private bool IsStringLetters(string input)
+        {
+            foreach (char c in input) {
+                if (!char.IsLetter(c))
+                    return false;
+            }
+            return true;
+        }
+
+        private bool ContainsLettersAndDigits(string input)
+        {
+            bool containsLetters = false;
+            bool containsDigits = false;
+
+            foreach (char c in input) {
+                if (char.IsLetter(c))
+                    containsLetters = true;
+                else if (char.IsDigit(c))
+                    containsDigits = true;
+            }
+
+            return containsLetters && containsDigits;
+        }
+
     }
 }

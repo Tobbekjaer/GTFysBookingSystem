@@ -9,10 +9,10 @@ namespace GTFysBookingSystem
     public class ConsultationRepo
     {
         // Initialisering af PatientRepo 
-        PatientRepo patientRepo = new PatientRepo();
+        private PatientRepo patientRepo;
 
         // Initialisering af PhysioRepo
-        PhysioRepo physioRepo = new PhysioRepo();
+        private PhysioRepo physioRepo;
 
         // Privat liste over konsultationer
         private List<Consultation> _consultations = new List<Consultation>();
@@ -23,6 +23,12 @@ namespace GTFysBookingSystem
 			get { return _consultations; }
 			set { _consultations = value; }
 		}
+
+        public ConsultationRepo(PatientRepo patientRepo, PhysioRepo physioRepo)
+        {
+            this.patientRepo = patientRepo;
+            this.physioRepo = physioRepo;
+        }
 
         // AddConsultation() metoden tilføjer en ny konsultation til listen 
         public void AddConsultation(Patient patient, TreatmentType treatmentType, Physio physio, DateOnly date, TimeOnly time)
@@ -54,15 +60,13 @@ namespace GTFysBookingSystem
 
         }
 
-        // GetAvailableTimes() metoden... skal returnere en liste/oversigt over ledige tider
-
         // GetAllConsultations() opretter en ny liste og kalder hvert konsultations-objekts ToString()-metode og
         // tilføjer det til listen og returnerer listen over alle konsultationer
         public List<string> GetAll()
         {
             List<string> returnConsultations = new List<string>();
 
-            using (StreamReader reader = new StreamReader("PatientRepository.txt")) {
+            using (StreamReader reader = new StreamReader("ConsultationRepository.txt")) {
 
                 string ln;
 
@@ -72,10 +76,6 @@ namespace GTFysBookingSystem
 
                 }
             }
-            
-            //foreach (Consultation consultation in _consultations) {
-            //    returnConsultations.Add(consultation.ToString());  
-            //}
 
             return returnConsultations;
         }
@@ -83,31 +83,15 @@ namespace GTFysBookingSystem
         // Method overload til at en enkelt patients konsultationer
         public List<string> GetAll(Patient patient)
         {
-            List<string> patitentConsultations = new List<string>();
+            List<string> patientConsultations = new List<string>();
 
-            using (StreamReader reader = new StreamReader("ConsultationRepository.txt")) {
-
-                string ln;
-
-                while ((ln = reader.ReadLine()) != null) {
-                    
-                    if(patient.FirstName == reader.ReadLine().Substring(13, patient.FirstName.Length)) {
-
-                        patitentConsultations.Add(ln);
-
-                    }
-
+            foreach (Consultation consultation in _consultations) {
+                if (patient.Cpr == consultation.Patient.Cpr) {
+                    patientConsultations.Add(consultation.ToString());
                 }
             }
 
-            //foreach (Consultation consultation in _consultations) {
-            //    // Hvis patient objektet har et tilknyttet konsultations objekt tilføjer vi konsultationen  
-            //    // til listen over patientens konsultationer
-            //    if (patient == consultation.Patient) {
-            //        patitentConsultations.Add(consultation.ToString());
-            //    }
-            //}
-            return patitentConsultations;
+            return patientConsultations;
         }
 
         public TreatmentType GetTreatmentType(TreatmentType treatmentType)

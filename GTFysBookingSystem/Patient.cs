@@ -21,11 +21,10 @@ namespace GTFysBookingSystem
         public string Cpr
         {
             get { return _cpr; }
-            set {
-                _cpr = value;
+            set {    
                 // Tjekker at alle karakterer i _cpr er tal
                 try {
-                    if (_cpr.All(char.IsDigit)) {
+                    if (IsStringDigits(value)) {
                         _cpr = value;
                     }
                 }
@@ -44,11 +43,10 @@ namespace GTFysBookingSystem
         public string Address
         {
             get { return _address; }
-            set {
-                _address = value;
+            set {       
                 try {
                     // Tjekker at karaktererne i _address er enten bogstaver eller tal
-                    if (_address.All(char.IsLetterOrDigit)) {
+                    if (ContainsLettersAndDigits(value)) {
                         _address = value;
                     }
                 }
@@ -60,12 +58,10 @@ namespace GTFysBookingSystem
         public string City
         {
             get { return _city; }
-            set {
-
-                _city = value;
+            set {      
                 // Tjekker at alle karakterer i _city er bogstaver
                 try {
-                    if (_city.All(char.IsLetter)) {
+                    if (IsStringDigits(value)) {
                         _city = value;
                     }
                 }
@@ -80,15 +76,17 @@ namespace GTFysBookingSystem
         {
             get { return _zipCode; }
             set {
-                // Tjekker at alle karakterer i _phone er tal
+                // Tjekker at alle karakterer i ZipCode er bogstaver
                 try {
+                    if (value is int) {
                         _zipCode = value;
+                    }
                 }
                 // Kaster en exeption, hvis input ikke er indtastet korrekt
                 catch (Exception ex) {
-                    throw new ArgumentException("Postnummer kan kun indeholde tal.");
+                    throw new ArgumentException("By kan kun indeholde bogstaver.");
                 }
-                
+
             }
         }
 
@@ -137,6 +135,38 @@ namespace GTFysBookingSystem
 
 
 
+        private bool IsStringDigits(string input)
+        {
+            foreach (char c in input) {
+                if (!char.IsDigit(c))
+                    return false;
+            }
+            return true;
+        }
+
+        private bool IsStringLetters(string input)
+        {
+            foreach (char c in input) {
+                if (!char.IsLetter(c))
+                    return false;
+            }
+            return true;
+        }
+
+        private bool ContainsLettersAndDigits(string input)
+        {
+            bool containsLetters = false;
+            bool containsDigits = false;
+
+            foreach (char c in input) {
+                if (char.IsLetter(c))
+                    containsLetters = true;
+                else if (char.IsDigit(c))
+                    containsDigits = true;
+            }
+
+            return containsLetters && containsDigits;
+        }
 
 
     }
