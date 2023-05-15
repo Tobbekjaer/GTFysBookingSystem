@@ -12,23 +12,15 @@ namespace GTFysBookingSystem
     public class GTFysController
     {
 
-        //// Initialisering af PatientRepo 
-        //PatientRepo patientRepo = new PatientRepo();
-
-        //// Initialisering af PhysioRepo
-        //PhysioRepo physioRepo = new PhysioRepo();
-
-        //// Initialisering af ConsultationRepo
-        //ConsultationRepo consultationRepo = new ConsultationRepo(patientRepo, physioRepo);
-
-        // Erklærer vores repositories som felter 
+        // Vi erklærer vores repositories som felter, så vi kan genbruge vores initialisering af dem,
+        // hver gang vi kalder GTFysController
         private PatientRepo patientRepo;
         private PhysioRepo physioRepo;
         private ConsultationRepo consultationRepo;
 
         public GTFysController()
         {
-            // Initialiserer vores repositories i vores constructor
+            // Vi initialiserer vores repositories i vores constructor
             patientRepo = new PatientRepo();
             physioRepo = new PhysioRepo();
             consultationRepo = new ConsultationRepo(patientRepo, physioRepo);
@@ -39,12 +31,10 @@ namespace GTFysBookingSystem
         {
             // Kalder AddPatient metoden i PatientRepo
             patientRepo.AddPatient(patient);
-
             
             // Send bekræftelses email til patienten
 
             // Hvis emailen bliver bekræftet bliver patienten tilføjet til repositoriet
-           
 
         }
 
@@ -73,11 +63,17 @@ namespace GTFysBookingSystem
             return consultationRepo.GetAll(patient);
         }
 
+        // DisplayConsultations metoden tager et physio objekt og returnerer en list over tilknyttede konsultationer
+        public List<string> DisplayConsultations(Physio physio)
+        {
+            // Kalder ConsultationRepo's GetAll(Physio physio) metode, der tager et physio objekt 
+            // og returnerer en string liste over fysioterapeutens konsultationer
+            return consultationRepo.GetAll(physio);
+        }
+
         public void BookConsultation(Patient patient, TreatmentType treatmentType, Physio physio, DateOnly date, TimeOnly time)
         {
-        
             consultationRepo.AddConsultation(patient, treatmentType, physio, date, time);
-
         }
 
 

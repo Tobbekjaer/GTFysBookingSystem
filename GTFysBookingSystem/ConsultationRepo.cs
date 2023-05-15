@@ -46,18 +46,23 @@ namespace GTFysBookingSystem
             Physio currentPhysio = physioRepo.GetPhysio(physio.FirstName);
 
             if (currentPatient != null && currentPhysio != null) {
+
                 newConsultation = new Consultation(currentPatient, type, currentPhysio, date, time);
-            }
 
-            if (newConsultation != null) {
-                _consultations.Add(newConsultation);
+                // Tjekker om en eksiterende consultation overlapper med den nye consultation
+                if (!_consultations.Any(existingConsultation =>
+                    existingConsultation.Physio == newConsultation.Physio &&
+                    existingConsultation.Date == newConsultation.Date &&
+                    existingConsultation.Time == newConsultation.Time)) {
 
-                // Gem den nye patient i en tekstfil
-                using (StreamWriter writer = new StreamWriter("ConsultationRepository.txt", append: true)) {
-                    writer.WriteLine(newConsultation.ToString());
+                    _consultations.Add(newConsultation);
+
+                    // Gem den nye patient i en tekstfil
+                    using (StreamWriter writer = new StreamWriter("ConsultationRepository.txt", append:true)) {
+                        writer.WriteLine(newConsultation.ToString());
+                    }
                 }
             }
-
         }
 
         // GetAllConsultations() opretter en ny liste og kalder hvert konsultations-objekts ToString()-metode og
@@ -73,14 +78,24 @@ namespace GTFysBookingSystem
                 while ((ln = reader.ReadLine()) != null) {
 
                     returnConsultations.Add(ln);
-
                 }
             }
-
             return returnConsultations;
         }
+        // Method overload til at se en enkelt fysioterapuets konsultationer
+        public List<string> GetAll(Physio physio)
+        {
+            List<string> physioConsultations = new List<string>();
 
-        // Method overload til at en enkelt patients konsultationer
+            foreach (Consultation consultation in _consultations) {
+                if (physio.FirstName == consultation.Physio.FirstName) {
+                    physioConsultations.Add(consultation.ToString());
+                }
+            }
+            return physioConsultations;
+        }
+
+        // Method overload til at se en enkelt patients konsultationer
         public List<string> GetAll(Patient patient)
         {
             List<string> patientConsultations = new List<string>();
@@ -90,7 +105,6 @@ namespace GTFysBookingSystem
                     patientConsultations.Add(consultation.ToString());
                 }
             }
-
             return patientConsultations;
         }
 
@@ -109,10 +123,6 @@ namespace GTFysBookingSystem
             }
             return type;
         }
-
-
-
-
 
     }
 }

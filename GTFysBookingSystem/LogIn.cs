@@ -106,6 +106,7 @@ namespace GTFysBookingSystem
             }
         }
 
+        // Metoder der tjekker om parameter inputtet er af den rette formattering
         private bool IsStringDigits(string input)
         {
             foreach (char c in input) {

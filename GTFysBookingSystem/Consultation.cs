@@ -15,6 +15,7 @@ namespace GTFysBookingSystem
         public DateOnly Date { get; set; }
         public TimeOnly Time { get; set; }
 
+        // Er ikke implementeret, men bør bruges til at bestemme længden på en consultation
         public static int FirstConsultationLength = 60;
         public static int TrainingInstructionLength = 45;
 
@@ -35,10 +36,6 @@ namespace GTFysBookingSystem
             return $"Patient: {Patient.FirstName} {Patient.LastName}, Physio: {Physio.FirstName} {Physio.LastName}," +
                 $" Treatment Type: {TreatmentType}, Date: {Date}, Time: {Time}";
         }
-
-        
-
-
 
     }
 }

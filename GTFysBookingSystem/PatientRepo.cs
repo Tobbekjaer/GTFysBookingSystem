@@ -21,16 +21,20 @@ namespace GTFysBookingSystem
 		// AddPatient() metoden tilføjer en ny patient til listen 
 		public void AddPatient(Patient patient)
 		{
-			if (patient != null) {
-				_patients.Add(patient);
+				// Tjekker hvis patientens CPR findes i en eksiterende patient i listen
+				// og tilføjer kun den nye patient hvis der ikke er et match
+            if (patient != null && !_patients.Any(existingPatient => existingPatient.Cpr == patient.Cpr)) {
+                _patients.Add(patient);
 
                 // Gem den nye patient i en tekstfil
-                using (StreamWriter writer = new StreamWriter("PatientRepository.txt", append:true)) {
-                    writer.WriteLine(patient.ToString());
+                using (StreamWriter writer = new StreamWriter("PatientRepository.txt")) {
+
+					foreach (Patient exististingPatient in _patients) {
+                            writer.WriteLine(exististingPatient.ToString());
+					}
                 }
             }
-			
-		}
+        }
 
         // DeletePatient() metoden sletter en patient fra listen, hvis listen indeholder en person med et matchende cpr
         public void DeletePatient(string cpr)

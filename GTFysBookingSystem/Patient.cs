@@ -90,7 +90,6 @@ namespace GTFysBookingSystem
             }
         }
 
-
         // Constructor til at oprette en patient
         // Tager alle login informationer plus resten af parametrene
         public Patient(string firstName, string lastName, string phone, string email, string username, string password, string cpr, bool insurance, string address, string city, int zipCode)
@@ -122,8 +121,6 @@ namespace GTFysBookingSystem
             this.City = city;
             this.ZipCode = zipCode;
         }
-        
-
 
         // ToString metode til at repræsentere et patient-objekt hvis vi fx skal skrive den til en fil
         public override string ToString()
@@ -134,20 +131,11 @@ namespace GTFysBookingSystem
         }
 
 
-
+        // Metoder der tjekker om parameter inputtet er af den rette formattering
         private bool IsStringDigits(string input)
         {
             foreach (char c in input) {
                 if (!char.IsDigit(c))
-                    return false;
-            }
-            return true;
-        }
-
-        private bool IsStringLetters(string input)
-        {
-            foreach (char c in input) {
-                if (!char.IsLetter(c))
                     return false;
             }
             return true;
@@ -167,7 +155,6 @@ namespace GTFysBookingSystem
 
             return containsLetters && containsDigits;
         }
-
 
     }
 }

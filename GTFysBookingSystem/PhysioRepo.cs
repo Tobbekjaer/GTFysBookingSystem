@@ -27,7 +27,7 @@ namespace GTFysBookingSystem
             
         }
 
-        // DeletePatient() metoden sletter en fysioterapeut fra listen, hvis listen indeholder en person med et matchende fornavn
+        // DeletePhysio() metoden sletter en fysioterapeut fra listen, hvis listen indeholder en person med et matchende fornavn
         public void DeletePhysio(string name)
         {
             foreach (Physio physio in _physios) {
