@@ -10,7 +10,6 @@ namespace GTFysBookingSystem
     {
         // Initialisering af PatientRepo 
         private PatientRepo patientRepo;
-
         // Initialisering af PhysioRepo
         private PhysioRepo physioRepo;
 
