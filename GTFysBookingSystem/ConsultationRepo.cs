@@ -56,7 +56,7 @@ namespace GTFysBookingSystem
 
                     _consultations.Add(newConsultation);
 
-                    // Gem den nye patient i en tekstfil
+                    // Gem den nye konsultation i en tekstfil
                     using (StreamWriter writer = new StreamWriter("ConsultationRepository.txt", append:true)) {
                         writer.WriteLine(newConsultation.ToString());
                     }
